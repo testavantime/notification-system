@@ -1,0 +1,97 @@
+### Health Check
+GET https://localhost:7001/api/notification/health
+Accept: application/json
+
+###
+
+### Send Welcome Email
+POST https://localhost:7001/api/notification/email
+Content-Type: application/json
+
+{
+  "templateName": "welcome",
+  "parameters": {
+    "Name": "John Doe",
+    "Email": "john@example.com"
+  },
+  "toEmails": ["john@example.com"]
+}
+
+###
+
+### Send Welcome SMS
+POST https://localhost:7001/api/notification/sms
+Content-Type: application/json
+
+{
+  "templateName": "welcome",
+  "parameters": {
+    "Name": "John Doe"
+  },
+  "toPhoneNumbers": ["+1234567890"]
+}
+
+###
+
+### Send Combined Notification (Email + SMS)
+POST https://localhost:7001/api/notification/send
+Content-Type: application/json
+
+{
+  "templateName": "welcome",
+  "parameters": {
+    "Name": "John Doe",
+    "Email": "john@example.com"
+  },
+  "toEmails": ["john@example.com"],
+  "toPhoneNumbers": ["+1234567890"],
+  "type": "Both"
+}
+
+###
+
+### Send Password Reset Email
+POST https://localhost:7001/api/notification/email
+Content-Type: application/json
+
+{
+  "templateName": "password-reset",
+  "parameters": {
+    "Name": "John Doe",
+    "ResetLink": "https://example.com/reset-password?token=abc123"
+  },
+  "toEmails": ["john@example.com"]
+}
+
+###
+
+### Send Verification SMS
+POST https://localhost:7001/api/notification/sms
+Content-Type: application/json
+
+{
+  "templateName": "verification",
+  "parameters": {
+    "VerificationCode": "123456"
+  },
+  "toPhoneNumbers": ["+1234567890"]
+}
+
+###
+
+### Send Order Confirmation (Email + SMS)
+POST https://localhost:7001/api/notification/send
+Content-Type: application/json
+
+{
+  "templateName": "order-confirmation",
+  "parameters": {
+    "Name": "John Doe",
+    "OrderId": "ORD-12345",
+    "Amount": "$99.99",
+    "DeliveryDate": "2024-01-15"
+  },
+  "toEmails": ["john@example.com"],
+  "toPhoneNumbers": ["+1234567890"],
+  "type": "Both"
+}
